@@ -12,9 +12,9 @@ def download(url):
 	video_name = yt.streams.filter(file_extension='mp4').order_by('resolution').desc().first().default_filename
 	print(video_name)
 	audio_stream = yt.streams.filter(only_audio=True).desc().first()
-	videao_stream = yt.streams.filter(file_extension='mp4').order_by('resolution').desc().first()
+	video_stream = yt.streams.filter(file_extension='mp4').order_by('resolution').desc().first()
 	audio_stream.download()
-	videao_stream.download()
+	video_stream.download()
 	subprocess.run(["ffmpeg", "-i", video_name, "-i", audio_name, "-c:v", "copy", "-c:a", "aac", video_name])
 	
 download(url)
